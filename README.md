@@ -33,10 +33,15 @@ is under MIT license.
 
 This thread pool can be build for:
 - linux
-  [x] g++-5 and higher
-  [x] clang-4 and higher
+    [x] g++-5 and higher
+    [x] clang-4 and higher
 - mac os
-  [x] g++
-  [x] clang
+    [x] g++
+    [x] clang
 
+```
+mkdir build
+cd build
+cmake .. -DCMAKE_BUILD_TYPE=Release -DTESTS=ON -DINSTALL=ON -DBENCHMARK=ON -DCOVERAGE=OFF
+make
 ```
