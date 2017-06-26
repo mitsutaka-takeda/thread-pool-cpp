@@ -1,6 +1,6 @@
 thread-pool-cpp
 =================
-[![Build Status](https://travis-ci.org/warchant/thread-pool-cpp.svg?branch=master)](https://travis-ci.org/inkooboo/thread-pool-cpp)
+[![Build Status](https://travis-ci.org/warchant/thread-pool-cpp.svg?branch=master)](https://travis-ci.org/warchant/thread-pool-cpp)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
  * It is highly scalable and fast.
