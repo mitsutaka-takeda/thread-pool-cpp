@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.6)
 
 project(thread-pool-cpp CXX)
 
@@ -7,14 +7,38 @@ option(INSTALL "Enable install option" OFF)
 option(COVERAGE "Enable code coverage" OFF)
 option(BENCHMARK "Build benchmark" ON)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wextra -Wsign-compare")
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wextra -Wsign-compare")
+
+add_library(ThreadPoolCpp INTERFACE)
+
+add_library(ThreadPoolCpp::ThreadPoolCpp ALIAS ThreadPoolCpp)
+
+target_include_directories(
+  ThreadPoolCpp
+  INTERFACE
+  include
+  )
+
+target_compile_options(
+  ThreadPoolCpp
+  INTERFACE
+  -std=c++11
+  )
+
 if(COVERAGE)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g --coverage")
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage")
+  target_compile_options(
+    ThreadPoolCpp
+    INTERFACE
+    -g 
+    --coverage
+    )
+  
+  target_link_libraries(
+    ThreadPoolCpp
+    INTERFACE
+    --coverage
+    )
 endif()
-
-
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 
 # gtest
@@ -22,7 +46,6 @@ if(TESTS)
   # Tests
   enable_testing()
   add_subdirectory(googletest)
-  include_directories(${CMAKE_CURRENT_SOURCE_DIR}/googletest/googletest/include)
   add_subdirectory(tests)
 endif()
 

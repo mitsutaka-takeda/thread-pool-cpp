@@ -1,7 +1,11 @@
 #benchmark
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR})
-
 add_executable(benchmark benchmark.cpp)
-target_link_libraries(benchmark pthread)
-
+target_compile_options(
+  benchmark
+  PRIVATE
+  -Wall
+  -Wextra
+  -Wsign-compare
+  )
+target_link_libraries(benchmark ThreadPoolCpp::ThreadPoolCpp pthread)
